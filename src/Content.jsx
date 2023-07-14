@@ -3,7 +3,7 @@ import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { LogoutLink } from "./LogoutLink";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Modal } from "./Modal";
 import { IngredientsShow } from "./IngredientsShow";
 import { IngredientsNew } from "./IngredientsNew";
@@ -12,11 +12,12 @@ export function Content() {
   const [ingredients, setIngredients] = useState([]);
   const [isIngredientsShowVisible, setIsIngredientsShowVisible] = useState(false);
   const [currentIngredient, setCurrentIngredient] = useState({});
+  const [searchTerms, setSearchTerms] = useState("");
 
   const handleIndexIngredients = () => {
     console.log("handleIndexIngredients");
-    axios.get("http://localhost:3000/ingredients.json").then((response) => {
-      console.log(response.data);
+    axios.get(`http://localhost:3000/ingredients.json?search=${searchTerms}`).then((response) => {
+      // console.log(response.data);
       setIngredients(response.data);
     });
   };
@@ -40,7 +41,7 @@ export function Content() {
     setIsIngredientsShowVisible(false);
   };
 
-  useEffect(handleIndexIngredients, []);
+  // useEffect(handleIndexIngredients, []);
 
   return (
     <div>
@@ -49,6 +50,10 @@ export function Content() {
       <Login />
       <LogoutLink />
       <IngredientsNew onCreateIngredient={handleCreateIngredient} />
+      <div>
+        Search: <input type="text" value={searchTerms} onChange={(event) => setSearchTerms(event.target.value)} />
+        <button onClick={handleIndexIngredients}>Search</button>
+      </div>
       <IngredientsIndex ingredients={ingredients} onShowIngredient={handleShowIngredient} />
       <Modal show={isIngredientsShowVisible} onClose={handleClose}>
         <IngredientsShow ingredient={currentIngredient} />
