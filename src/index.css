@@ -1,8 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+
 html {
   scroll-behavior: smooth;
-
 }
 
-image {
-  
+#ingredients-index img {
+  width: 300px;
+}
+
+#root {
+  font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+  font-size: 20px;
+  background-image: url('./src/assets/45degreee_fabric.webp');
+  background-size: 250px;
+  background-repeat: repeat-x repeat-y;
+}
+
+#pantry-brand {
+  font-family: 'Pangolin', cursive;
+  font-size: 30px;
+}
+
+.card img {
+  object-fit: cover;
+  height: 250px;
 }

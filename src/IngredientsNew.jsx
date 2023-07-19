@@ -16,6 +16,13 @@ export function IngredientsNew(props) {
           Image_Url: <input name="url" type="text" />
         </div>
         <button type="submit">Create Ingredient</button>
+        <br />
+        <br />
+        <h1>Your Pantry</h1>
+        <br />
+        <br />
+        <br />
+        <button type="submit">Search Recipe's Using Pantry Items</button>
       </form>
     </div>
   );
